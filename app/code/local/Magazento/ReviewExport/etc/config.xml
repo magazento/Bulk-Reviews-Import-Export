@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @category   Magazento
+* @package    Magazento_CategoryExport
+* @author     Kate Mironova
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Magazento_ReviewExport>
+            <version>0.1.0</version>
+        </Magazento_ReviewExport>
+    </modules>
+    <frontend>
+        <routers>
+            <reviewexport>
+                <use>standard</use>
+                <args>
+                    <module>Magazento_ReviewExport</module>
+                    <frontName>reviewexport</frontName>
+                </args>
+            </reviewexport>
+        </routers>
+        <layout>
+            <updates>
+                <reviewexport>
+                    <file>magazento_reviewexport.xml</file>
+                </reviewexport>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <reviewexport>
+                <use>admin</use>
+                <args>
+                    <module>Magazento_CategoryExport</module>
+                    <frontName>reviewexport</frontName>
+                </args>
+            </reviewexport>
+            
+<!--                <adminhtml>
+                    <args>
+                        <modules>
+                            <Magazento_CategoryExport before="Mage_Adminhtml">Magazento_CategoryExport</Magazento_CategoryExport>
+                        </modules>
+                    </args>
+                </adminhtml>
+          -->
+        </routers>
+        <fieldsets>
+            <review_dataflow>
+                <review_id>
+                    <system>1</system>
+                </review_id>
+                <detail_id>
+                    <system>1</system>
+                </detail_id>
+             </review_dataflow>
+        </fieldsets>
+    </admin>
+    <adminhtml>
+        <acl>
+            <resources>
+        <admin>
+            <children>
+                <system>
+                    <children>
+                        <config>
+                            <children>
+                                <reviewexport translate="title" module="reviewexport">
+                                    <title>reviewexport</title>
+                                </reviewexport>
+                            </children>
+                        </config>
+                    </children>
+                </system>
+
+            </children>
+        </admin>
+            </resources>
+        </acl>
+       
+          <layout>
+            <updates>
+                <reviewexport>
+                    <file>magazento_reviewexport.xml</file>
+                </reviewexport>
+            </updates>
+        </layout>
+        
+    </adminhtml>   
+    <global>
+        <models>
+            <reviewexport>
+                <class>Magazento_ReviewExport_Model</class>
+                <resourceModel>reviewexport_mysql4</resourceModel>
+            </reviewexport>
+            <reviewexport_mysql4>
+                <class>Magazento_ReviewExport_Model_Mysql4</class>
+                <entities>
+                    <reviewexport>
+                        <table>reviewexport</table>
+                    </reviewexport>
+                </entities>
+            </reviewexport_mysql4>
+        </models>
+        <resources>
+            <reviewexport_setup>
+                <setup>
+                    <module>Magazento_ReviewExport</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </reviewexport_setup>
+            <reviewexport_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </reviewexport_write>
+            <reviewexport_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </reviewexport_read>
+        </resources>
+        <blocks>
+            <reviewexport>
+                <class>Magazento_ReviewExport_Block</class>
+            </reviewexport>
+        </blocks>
+        <helpers>
+            <reviewexport>
+                <class>Magazento_ReviewExport_Helper</class>
+            </reviewexport>
+        </helpers>
+<!--        <rewrite>
+            <magazento_reviewexport_adminhtml_system_convert_profile>
+                <from><![CDATA[#^/admin/system_convert_gui/#]]>
+                </from>
+                <to>/reviewexport/system_convert_gui/</to>
+            </magazento_reviewexport_adminhtml_system_convert_profile>
+        </rewrite>-->
+    </global>
+    <default>
+        <reviewexport>
+            <options>
+                <enable>1</enable>
+             </options>
+        </reviewexport>
+    </default>
+</config>
